@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User saveUser(User user) {
+        log.info("saving {}", user);
         return userRepository.save(user);
     }
 
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Role saveRole(Role role) {
+        log.info("saving {}", role);
         return roleRepository.save(role);
     }
 
@@ -43,6 +45,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void addRoleToUser(String username, String roleName) {
+        log.info("adding role {} to user {}", roleName, username);
+
         User user = getUser(username);
 
         Role role = roleRepository.findRoleByName(roleName);
@@ -56,6 +60,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getUser(String username) {
+        log.info("getting user {}", username);
         return userRepository.findUserByUsername(username);
     }
 
@@ -64,6 +69,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<User> getUsers() {
+        log.info("getting all users");
         return userRepository.findAll();
     }
 }
